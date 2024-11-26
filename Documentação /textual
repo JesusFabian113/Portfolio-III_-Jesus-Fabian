@@ -1,1 +1,50 @@
+DESAFIO FORTES
+
+Web y User experience: Sobre um cassino online
+
+O design, desenvolvimento e implementação de funcionalidades específicas estão incluídos para oferecer uma experiência atrativa, segura e funcional aos usuários. 
+Não apenas conhecimento técnico em desenvolvimento web, mas também cumprimento das regulamentações legais e garantia de uma experiência de usuário tranquila e envolvente.
+
+1. Planejamento e Requisitos Iniciais:
+
+Os elementos são definidos
+
+Tipo de jogo de cassino: Será um cassino de 20 cartas para 2 pessoas, 30 cartas para 4 pessoas, cartas pares, cartas ímpares, cartas para personalizar, blackjack, escolha com roleta, pôquer
+
+Sistema de jogo: Bônus, promoções, 4 tipos de contas com taxas diferentes: 
+
+¿Haverá sistemas de recompensas, rodadas grátis, bônus de boas-vindas?
+
+Preço de taxa de diamante grátis, normal, premium, com 5 recompensas grátis na compra deste
+
+Recursos ao vivo: Permitem a interação entre jogadores via microfone e chat
+
+Métodos de pagamento:Definir conta de Pix, Transação, Mastercard, wallet
+
+Regulamentação legal: Crie contas através do Gmail com conta de recuperação. Esta é atualizada todos os meses, você pode adicionar uma foto de perfil e ganhar conquistas através de desafios, alguns darão 20% de desconto.
+
+Segurança: Você tem vários tipos de login no Gmail Facebook, com a assinatura paga você pode criar uma conta no CasinoDplay e no Instagram. Você também terá verificação se for um robô. Nenhuma informação monetária pessoal ou privada será divulgada no aplicativo, ela só é tratada com o Gmail.
+
+
+
+
+
+2. Arquitetura de aplicativos da Web
+
+Front-end (Interface do Usuário): O front-end é a parte visível do jogo, onde os usuários interagem com os jogos e outros recursos, como: HTML ou Javascript
+
+Back-end (servidor e lógica de negócios): O back-end lida com a lógica do jogo, armazenamento de dados do usuário, transações e comunicação com bancos de dados. Tecnologias como: Node.js (JavaScript), Java Spring (Java) para criar servidores eficientes. MySQL, como Firebase para armazenar informações do usuário, suas transações e registros de jogos.
+
+Design: quadros de apostas, botões claros para fazer apostas e um design visual coerente e agradável.
+
+Acessibilidade: Acessível em dispositivos móveis e desktop e fácil de usar para pessoas com deficiência (por exemplo, texto legível, contrastes apropriados, navegação acessível).
+
+Interatividade: Notificações em tempo real (por exemplo, quando um jogador vence) e uma interface de usuário dinâmica para aprimorar a experiência.
+
+3. Mantenimiento y regularización del aplicativo
+
+A regularização será mensal, a foto do perfil, conquistas de adesão, objetos, botões e imagens serão alterados.
+
+A manutenção excluirá os arquivos restantes de cada ano, que são desnecessários. Você também pode instalar alguns antecedentes de sua preferência.
+
 
