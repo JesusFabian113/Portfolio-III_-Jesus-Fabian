@@ -1,1 +1,119 @@
+CREATE DATABASE cassino_online;
 
+USE cassino_online;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    foto_perfil VARCHAR(255),
+    conta_recuperacao VARCHAR(255),
+    tipo_conta ENUM('Grátis', 'Normal', 'Premium', 'Diamante') NOT NULL,
+    conquistas TEXT,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tipos_jogo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    numero_cartas INT,
+    jogadores_por_jogo INT,
+    tipo_cartas ENUM('Pares', 'Ímpares', 'Personalizadas', 'Blackjack', 'Roleta', 'Pôquer') NOT NULL
+);
+
+CREATE TABLE transacoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    metodo_pagamento ENUM('Pix', 'Transação', 'Mastercard', 'Wallet') NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL,
+    data_transacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE recompensas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    tipo_recompensa VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    valor DECIMAL(10, 2),
+    data_ativacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE promocoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao TEXT NOT NULL,
+    tipo_promo VARCHAR(255),
+    valor_bonus DECIMAL(10, 2),
+    data_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_fim TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE desafios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    descricao TEXT NOT NULL,
+    status ENUM('Pendente', 'Concluído', 'Expirado') DEFAULT 'Pendente',
+    data_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_fim TIMESTAMP,
+    desconto_percentual DECIMAL(5, 2),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE sessoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    metodo_login ENUM('Gmail', 'Facebook', 'Instagram') NOT NULL,
+    verificado_robô BOOLEAN DEFAULT FALSE,
+    data_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE jogos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_tipo_jogo INT,
+    resultado VARCHAR(255),
+    data_jogo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id_tipo_jogo) REFERENCES tipos_jogo(id)
+);
+
+CREATE TABLE configuracoes_segurança (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    conta_recuperacao VARCHAR(255),
+    verificado_robô BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE pagamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    valor_pago DECIMAL(10, 2),
+    metodo_pagamento ENUM('Pix', 'Transação', 'Mastercard', 'Wallet') NOT NULL,
+    data_pagamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE notificacoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    mensagem TEXT NOT NULL,
+    tipo_notificacao ENUM('Vitória', 'Promoção', 'Desafio') NOT NULL,
+    lida BOOLEAN DEFAULT FALSE,
+    data_notificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE manutencao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    descricao TEXT NOT NULL,
+    data_manutencao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
